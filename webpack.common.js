@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
-  entry: { main: "./src/index.js" },
+  entry: "./src/index.tsx",
 
   output: {
     assetModuleFilename: "[name].[hash][ext]",
@@ -18,17 +19,18 @@ module.exports = {
         type: "asset/resource",
       },
       {
+        test: /\.tsx?$/i,
+        use: ["babel-loader", "ts-loader"],
+      },
+      {
         test: /\.css$/i,
         use: ["style-loader", "css-loader", "postcss-loader"],
       },
-      {
-        test: /\.js$/i,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
-      },
     ],
+  },
+
+  resolve: {
+    extensions: [".ts", ".tsx", ".css", ".js", ".jsx"],
   },
 
   plugins: [

@@ -9,15 +9,5 @@ module.exports = merge(common, {
     clean: true,
   },
 
-  module: {
-    rules: [
-      {
-        test: /\.s[ac]ss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
-    ],
-  },
-
-  devtool: "inline-source-map",
   mode: "development",
 });
